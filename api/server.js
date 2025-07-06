@@ -1,23 +1,28 @@
 // Importa o framework Express para criar o servidor HTTP
 import express from "express";
 
-// Importa as rotas de usuário definidas em outro arquivo
-import userRoutes from "./routes/users.js";
+import cors from 'cors'
 
-// Importa o middleware CORS para permitir requisições de outros domínios
-import cors from "cors";
+
+import dotenv from "dotenv";
+dotenv.config()
 
 // Cria uma instância da aplicação Express
 const app = express();
 
+// Habilita o CORS para todas as rotas
+app.use(cors());
+
 // Configura o Express para aceitar requisições com corpo em JSON
 app.use(express.json());
 
-// Habilita o CORS para todas as rotas
-app.use(cors());
+// Importa as rotas de usuário definidas em outro arquivo
+import userRoutes from "./routes/users.js";
+
+
 
 // Usa as rotas de usuário na raiz do servidor
 app.use("/", userRoutes);
 
-// Inicia o servidor na porta 8800
-app.listen(8800);
+// Inicia o servidor na porta 3001
+app.listen(3001);
