@@ -5,7 +5,7 @@ import React, { useRef, useState } from 'react'
 import Input from './Input'
 import Image from 'next/image'
 
-const UploadBox = () => {
+const UploadBox = ({ onFileSelect }) => {
     const inputRef = useRef(null)
 
     const [file, setFile] = useState(null)
@@ -27,6 +27,9 @@ const UploadBox = () => {
         }
 
         setFile(selectedFile)
+        if (onFileSelect) {
+            onFileSelect(selectedFile)
+        }
     }
 
 

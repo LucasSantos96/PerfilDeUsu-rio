@@ -3,26 +3,60 @@
 import Input from "@/components/Input";
 import UploadBox from "@/components/UploadBox";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CreateProfile = () => {
 
-    const [mensagem, setMensagem] = useState()
-    const [nome, setNome] = useState()
-    const [idade, setIdade] = useState()
-    const [rua, setRua] = useState()
-    const [bairro, setBairro] = useState()
-    const [estado, setEstado] = useState()
-    const [bio, setBio] = useState()
+    const [mensagem, setMensagem] = useState("")
+    const [nome, setNome] = useState("")
+    const [idade, setIdade] = useState("")
+    const [rua, setRua] = useState("")
+    const [bairro, setBairro] = useState("")
+    const [estado, setEstado] = useState("")
+    const [bio, setBio] = useState("")
+    const [imagem, setImagem] = useState(null)
+    const router = useRouter();
 
-        const handleSubmit = (e) =>{
-            e.preventDefault()
-            if(!nome || !idade || !rua || !bairro || !estado || !bio){
-                setMensagem('Preencha todos os campos!')
-                 return
-            }
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+        if(!nome || !idade || !rua || !bairro || !estado || !bio || !imagem){
+            setMensagem('Preencha todos os campos!')
+             return
         }
 
+        // Monta o FormData para enviar os dados e a imagem
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('idade', idade);
+        formData.append('rua', rua);
+        formData.append('bairro', bairro);
+        formData.append('estado', estado);
+        formData.append('biografia', bio);
+        formData.append('imagem', imagem);
 
+        try {
+            const response = await fetch('http://localhost:3001/create', {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) {
+                setMensagem('Perfil criado com sucesso!');
+                setNome('');
+                setBairro('');
+                setBio('');
+                setEstado('');
+                setIdade('');
+                setRua('');
+                setImagem(null);
+                // Redireciona para a página de visualização
+                router.push("/ViewProfile");
+            } else {
+                setMensagem('Erro ao criar perfil!');
+            }
+        } catch (error) {
+            setMensagem('Erro ao criar perfil!');
+        }
+    }
 
   return (
     <section className="mx-4 flex flex-col items-center  ">
@@ -32,7 +66,7 @@ const CreateProfile = () => {
        <h2 className="text-2xl font-semibold">Criar perfil</h2>
 
         <p className="text-sm">carregar imagem</p>
-        <UploadBox/>
+        <UploadBox onFileSelect={setImagem}/>
 
         {mensagem && <p className="text-[#e33d3d] text-sm">{mensagem}</p>}
         <label htmlFor="nome">
@@ -107,6 +141,7 @@ const CreateProfile = () => {
           className="border rounded-sm w-full bg-[#15a4fd] text-white p-2 font-semibold mt-4"
           type="submit"
           value="Criar perfil"
+
         />
       </form>
     </section>
