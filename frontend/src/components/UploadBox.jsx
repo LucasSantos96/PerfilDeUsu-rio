@@ -36,7 +36,7 @@ const UploadBox = ({ onFileSelect }) => {
 
   return (
     <div className='flex w-full gap-1'>
-        <div className='border border-dashed rounded-sm flex bg-gray-300  items-center w-full py-3'>
+        <div className='border border-dashed border-gray-400 rounded-sm flex bg-gray-300  items-center w-full py-3'>
          <Image
          src={'/upload.png'}
          alt='upload icon'
@@ -62,7 +62,7 @@ const UploadBox = ({ onFileSelect }) => {
             <Input
             type='button'
             value='carregar Foto'
-            className='bg-[#15a4fd] text-white text-sm py-3 px-2 rounded-sm cursor-pointer font-semibold'
+            className='bg-[#15a4fd] text-white text-sm py-3 px-2 rounded-sm cursor-pointer font-semibold hover:bg-[#15a4fd]/80'
             onClick={handleUpload}
             />
         </div>

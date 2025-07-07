@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useRouter } from "next/navigation";
 
 import '@/app/globals.css'
 import Input from '@/components/Input'
@@ -17,6 +18,9 @@ const ViewProfile = () => {
   const [bio, setBio] = useState("")
   const [imagem, setImagem] = useState(null)
   const [mensagem, setMensagem] = useState("")
+
+  const router = useRouter();
+
 
   useEffect(() => {
     // Busca o utimo perfil cadastrado 
@@ -60,6 +64,7 @@ const ViewProfile = () => {
     formData.append('bairro', bairro);
     formData.append('estado', estado);
     formData.append('biografia', bio);
+
     if (imagem) formData.append('imagem', imagem);
     try {
       const response = await fetch(`http://localhost:3001/update/${perfil.id}`, {
@@ -95,6 +100,9 @@ const ViewProfile = () => {
         setMensagem('Perfil deletado com sucesso!');
         setPerfil(null);
         setEditando(false);
+        
+        router.push("/CreateProfile");
+
       } else {
         setMensagem('Erro ao deletar perfil!');
       }
@@ -195,7 +203,7 @@ const ViewProfile = () => {
   }
 
   return (
-    <div className=" flex flex-col items-center justify-center mt-8">
+    <div className=" flex flex-col items-center justify-center mt-8 text-gray-900">
       <div>
       <h2 className="text-2xl font-bold mb-4" >Perfil</h2>
       <img
@@ -208,10 +216,17 @@ const ViewProfile = () => {
       <div>Rua: {perfil.rua}</div>
       <div>Bairro: {perfil.bairro}</div>
       <div>Estado: {perfil.estado}</div>
-      <div className="mt-2 italic border rounded-sm p-2"><span className='font-semibold'>Biografia:</span> <br/> {perfil.biografia}</div>
+      <div className="mt-2 italic border rounded-sm p-2 border-gray-400"><span className='font-semibold'>Biografia:</span> <br/> {perfil.biografia}</div>
       </div>
       <div className='flex gap-2 my-4'>
-      <button onClick={handleEdit} className="bg-blue-500 text-white px-4 py-2 rounded mb-4">Editar</button>
+
+        <Input
+        type='button'
+        onClick={handleEdit}
+        className='bg-blue-500 text-white px-4 py-2 rounded mb-4 cursor-pointer'
+        value='Editar'
+        />
+
       <Input
         type='button'
         value='Deletar Perfil'

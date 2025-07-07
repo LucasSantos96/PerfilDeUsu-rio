@@ -1,5 +1,5 @@
 'use client'
-
+import '@/app/globals.css'
 import Input from "@/components/Input";
 import UploadBox from "@/components/UploadBox";
 import React, { useState } from "react";
@@ -59,7 +59,7 @@ const CreateProfile = () => {
     }
 
   return (
-    <section className="mx-4 flex flex-col items-center  ">
+    <section className=" mt-20 mx-4 flex flex-col items-center  text-gray-800 lg:px-10 ">
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-[320px]">
 
@@ -73,7 +73,7 @@ const CreateProfile = () => {
           Nome Completo
           <Input
             onChange={(e)=>setNome(e.target.value)}
-            className="border rounded-sm w-full py-2"
+            className="border rounded-sm w-full py-2 border-gray-400"
             type="text"
             name="nome"
             value={nome}
@@ -85,7 +85,7 @@ const CreateProfile = () => {
                 Idade
               <Input
               onChange={(e)=>setIdade(e.target.value)}
-              className="border rounded-sm  w-3/3 py-2"
+              className="border rounded-sm  w-3/3 py-2 border-gray-400"
               type='number'
               name='idade'
               value={idade}
@@ -96,7 +96,7 @@ const CreateProfile = () => {
                 Rua
                 <Input
                 onChange={(e)=>setRua(e.target.value)}
-                className="border rounded-sm py-2 "
+                className="border rounded-sm py-2 border-gray-400 "
                 type='text'
                 name='street'
                 value={rua}
@@ -109,7 +109,7 @@ const CreateProfile = () => {
                 Bairro
                 <Input
                 onChange={(e)=>setBairro(e.target.value)}
-                className="border rounded-sm py-2"
+                className="border rounded-sm py-2 border-gray-400"
                 type='text'
                 name='bairro'
                 value={bairro}
@@ -119,7 +119,7 @@ const CreateProfile = () => {
                 Estado
               <Input
               onChange={(e)=>setEstado(e.target.value)}
-               className="border rounded-sm  w-3/3 py-2"
+               className="border rounded-sm  w-3/3 py-2 border-gray-400"
                type='text'
                name='estado'
                value={estado}
@@ -132,13 +132,13 @@ const CreateProfile = () => {
           <textarea
           onChange={(e)=>setBio(e.target.value)}
            name="bio"
-           className="border rounded-sm p-4" 
+           className="border rounded-sm p-4 border-gray-400" 
            maxLength={500} 
            minLength={1} 
            value={bio}/>
         </>
         <Input
-          className="border rounded-sm w-full bg-[#15a4fd] text-white p-2 font-semibold mt-4"
+          className="border rounded-sm w-full bg-[#15a4fd] text-white p-2 font-semibold mt-4 cursor-pointer hover:bg-[#15a4fd]/80"
           type="submit"
           value="Criar perfil"
 
