@@ -191,10 +191,26 @@ CREATE TABLE usuarios (
 2. Configure as variáveis de ambiente para a URL da API
 3. Deploy automático a cada push
 
-### Backend (Railway/Render)
-1. Configure as variáveis de ambiente do banco de dados
-2. Deploy da API Node.js
-3. Atualize a URL da API no frontend
+### Backend (Railway)
+1. **Criar conta**: Acesse [railway.app](https://railway.app) e faça login com GitHub
+2. **Conectar repositório**: 
+   - Clique em "New Project" → "Deploy from GitHub repo"
+   - Selecione seu repositório
+   - Configure Root Directory como `api`
+3. **Configurar variáveis de ambiente**:
+   ```env
+   DB_HOST=seu_host_mysql
+   DB_USER=seu_usuario
+   DB_PASSWORD=sua_senha
+   DB_NAME=nome_do_banco
+   DB_PORT=3306
+   FRONTEND_URL=https://seu-frontend.vercel.app
+   ```
+4. **Banco de dados**: 
+   - Opção A: Use MySQL externo (PlanetScale, AWS RDS)
+   - Opção B: Crie MySQL no Railway (New → Database → MySQL)
+5. **Deploy automático**: A cada push na branch main
+6. **URL da API**: Copie a URL gerada pelo Railway para usar no frontend
 
 ## 🔒 Segurança
 
