@@ -24,7 +24,7 @@ const ViewProfile = () => {
 
   useEffect(() => {
     // Busca o utimo perfil cadastrado 
-    fetch('http://localhost:3001/')
+    fetch('https://perfildeusu-rio.up.railway.app/')
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {
@@ -67,7 +67,7 @@ const ViewProfile = () => {
 
     if (imagem) formData.append('imagem', imagem);
     try {
-      const response = await fetch(`http://localhost:3001/update/${perfil.id}`, {
+      const response = await fetch(`https://perfildeusu-rio.up.railway.app/update/${perfil.id}`, {
         method: 'PUT',
         body: formData
       });
@@ -75,7 +75,7 @@ const ViewProfile = () => {
         setMensagem('Perfil atualizado com sucesso!');
         setEditando(false)
         // Atualiza o perfil exibido
-        fetch('http://localhost:3001/')
+        fetch('https://perfildeusu-rio.up.railway.app/')
           .then(res => res.json())
           .then(data => {
             if (data && data.length > 0) {
@@ -93,7 +93,7 @@ const ViewProfile = () => {
   const handleDelete = async () => {
     if (!window.confirm('Tem certeza que deseja deletar este perfil?')) return;
     try {
-      const response = await fetch(`http://localhost:3001/delete/${perfil.id}`, {
+      const response = await fetch(`https://perfildeusu-rio.up.railway.app/delete/${perfil.id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -207,7 +207,7 @@ const ViewProfile = () => {
       <div>
       <h2 className="text-2xl font-bold mb-4" >Perfil</h2>
       <img
-        src={`http://localhost:3001/imagem/${perfil.id}?${Date.now()}`}
+        src={`https://perfildeusu-rio.up.railway.app/imagem/${perfil.id}?${Date.now()}`}
         alt="Foto do perfil"
         className="w-80 h-80 object-cover rounded-full mb-4 border"
       />

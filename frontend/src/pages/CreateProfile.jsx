@@ -35,7 +35,7 @@ const CreateProfile = () => {
         formData.append('imagem', imagem);
 
         try {
-            const response = await fetch('http://localhost:3001/create', {
+            const response = await fetch('https://perfildeusu-rio.up.railway.app/create', {
                 method: 'POST',
                 body: formData
             });
