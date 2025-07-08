@@ -1,7 +1,7 @@
 // Importa o framework Express para criar o servidor HTTP
 import express from "express";
 
-import cors from 'cors'
+import cors from 'cors';
 
 
 import dotenv from "dotenv";
@@ -10,10 +10,14 @@ dotenv.config()
 // Cria uma instância da aplicação Express
 const app = express();
 
-// Habilita o CORS para todas as rotas
+const allowedOrigins = [
+  'https://profileuser.vercel.app',
+  'http://localhost:3000'
+];
+
 app.use(cors({
-    origin: 'https://profileuser.vercel.app',
-    credentials: true
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 // Configura o Express para aceitar requisições com corpo em JSON
