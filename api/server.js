@@ -11,7 +11,10 @@ dotenv.config()
 const app = express();
 
 // Habilita o CORS para todas as rotas
-app.use(cors());
+app.use(cors({
+    origin: 'https://profileuser.vercel.app',
+    credentials: true
+}));
 
 // Configura o Express para aceitar requisições com corpo em JSON
 app.use(express.json());
