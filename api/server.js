@@ -31,5 +31,7 @@ import userRoutes from "./routes/users.js";
 // Usa as rotas de usuário na raiz do servidor
 app.use("/", userRoutes);
 
-// Inicia o servidor na porta 3001
-app.listen(3001);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
