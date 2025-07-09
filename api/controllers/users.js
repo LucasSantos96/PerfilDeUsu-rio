@@ -1,7 +1,7 @@
 // Importa a conexão com o banco de dados
 import db from "../db/connection.js";
 
-// Função para criar um novo usuário na tabela 'profile'
+// Função para criar um novo usuário na tabela usuarios
 export const createUser = (req, res) => {
   // Extrai os dados do corpo da requisição
   const { nome, idade, rua, estado, bairro, biografia } = req.body;
@@ -12,7 +12,7 @@ export const createUser = (req, res) => {
 
   // Query SQL para inserir um novo usuário, incluindo o campo imagem e tipo_imagem
   const q =
-    "INSERT INTO profile (nome, idade, rua, estado, bairro, biografia, imagem, tipo_imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO usuarios (nome, idade, rua, estado, bairro, biografia, imagem, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
   // Monta o array de valores para a query
   const values = [nome, idade, rua, estado, bairro, biografia, imagem, tipo_imagem];
@@ -29,10 +29,10 @@ export const createUser = (req, res) => {
   });
 };
 
-// Função para buscar todos os usuários da tabela 'profile'
+// Função para buscar todos os usuários da tabela usuarios
 export const getUser = (_, res) => {
-  // Query SQL para selecionar todos os registros da tabela 'profile'
-  const q = "SELECT * FROM profile";
+  // Query SQL para selecionar todos os registros da tabela usuarios
+  const q = "SELECT * FROM usuarios";
 
   // Executa a query no banco de dados
   db.query(q, (err, data) => {
@@ -47,7 +47,7 @@ export const getUser = (_, res) => {
 // Função para buscar a imagem de um usuário pelo id
 export const getUserImage = (req, res) => {
   const { id } = req.params;
-  const q = "SELECT imagem, tipo_imagem FROM profile WHERE id = ?";
+  const q = "SELECT imagem, tipo_imagem FROM usuarios WHERE id = ?";
   db.query(q, [id], (err, results) => {
     if (err || results.length === 0 || !results[0].imagem) {
       return res.status(404).send('Imagem não encontrada');
@@ -61,7 +61,7 @@ export const getUserImage = (req, res) => {
 export const updateUser = (req, res) => {
   const { id } = req.params;
   const { nome, idade, rua, estado, bairro, biografia } = req.body;
-  let q = "UPDATE profile SET nome=?, idade=?, rua=?, estado=?, bairro=?, biografia=?";
+  let q = "UPDATE usuarios SET nome=?, idade=?, rua=?, estado=?, bairro=?, biografia=?";
   const values = [nome, idade, rua, estado, bairro, biografia];
 
   // Se uma nova imagem foi enviada, atualiza também imagem e tipo_imagem
@@ -84,7 +84,7 @@ export const updateUser = (req, res) => {
 // Função para deletar um usuário pelo id
 export const deleteUser = (req, res) => {
   const { id } = req.params;
-  const q = "DELETE FROM profile WHERE id = ?";
+  const q = "DELETE FROM usuarios WHERE id = ?";
   db.query(q, [id], (err, result) => {
     if (err) {
       console.error("Erro MySQL:", err);
