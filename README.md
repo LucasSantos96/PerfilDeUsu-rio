@@ -11,7 +11,7 @@ Sistema fullstack para cadastro, visualização, edição e exclusão de perfis 
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/SEU_USUARIO/PerfilDeUsu-rio.git
+git clone https://github.com/LucasSantos96/PerfilDeUsu-rio.git
 ```
 
 ### 2. Instalar dependências
