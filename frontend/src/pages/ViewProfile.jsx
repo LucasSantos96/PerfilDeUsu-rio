@@ -93,7 +93,7 @@ const ViewProfile = () => {
   const handleDelete = async () => {
     if (!window.confirm('Tem certeza que deseja deletar este perfil?')) return;
     try {
-      const response = await fetch(`https://perfildeusu-rio.up.railway.app/delete/${perfil.id}`, {
+      const response = await fetch(`https://perfildeusu-rio-production.up.railway.app/delete/${perfil.id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
