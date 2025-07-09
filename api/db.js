@@ -1,5 +1,5 @@
 // Importa o módulo mysql para conectar com o banco de dados MySQL
-import mysql from "mysql";
+import mysql from "mysql2";
 
 // Cria uma conexão com o banco de dados MySQL usando as credenciais fornecidas
 export const db = mysql.createConnection({

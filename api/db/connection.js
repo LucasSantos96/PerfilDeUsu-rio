@@ -1,5 +1,5 @@
 // Importa o módulo mysql para conectar com o banco de dados MySQL
-import mysql from "mysql";
+import mysql from "mysql2";
 // Carrega as variáveis de ambiente do arquivo .env
 import dotenv from "dotenv";
 dotenv.config()
