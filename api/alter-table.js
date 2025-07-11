@@ -14,7 +14,7 @@ console.log("PORT:", process.env.DB_PORT);
 connection.query(
     `ALTER TABLE usuarios 
     MODIFY COLUMN nome VARCHAR(255),
-    MODIFY COLUMN rua VARCHAR(255),
+    MODIFY COLUMN rua TEXT,
     MODIFY COLUMN estado VARCHAR(255),
     MODIFY COLUMN bairro VARCHAR(255),
     MODIFY COLUMN biografia VARCHAR(500),
