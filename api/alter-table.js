@@ -14,11 +14,11 @@ console.log("PORT:", process.env.DB_PORT);
 connection.query(
     `ALTER TABLE usuarios 
     MODIFY COLUMN nome VARCHAR(255),
-    MODIFY COLUMN rua TEXT,
+    MODIFY COLUMN rua VARCHAR(100),
     MODIFY COLUMN estado VARCHAR(255),
     MODIFY COLUMN bairro VARCHAR(255),
     MODIFY COLUMN biografia VARCHAR(500),
-    MODIFY COLUMN imagem MEDIUMBLOB,
+    MODIFY COLUMN imagem LONGBLOB,
     MODIFY COLUMN idade INT;`,
     (err, results) => {
         if (err) {
