@@ -18,7 +18,7 @@ connection.query(
     MODIFY COLUMN estado VARCHAR(255),
     MODIFY COLUMN bairro VARCHAR(255),
     MODIFY COLUMN biografia VARCHAR(500),
-    MODIFY COLUMN imagem LONGBLOB,
+    MODIFY COLUMN imagem TEXT,
     MODIFY COLUMN idade INT;`,
     (err, results) => {
         if (err) {
