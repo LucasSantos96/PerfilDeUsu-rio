@@ -12,7 +12,14 @@ console.log("PORT:", process.env.DB_PORT);
 
 // Executa a query para alterar o tamanho da coluna 'nome' na tabela 'usuarios'
 connection.query(
-    "ALTER TABLE usuarios MODIFY COLUMN nome VARCHAR(255);",
+    `ALTER TABLE usuarios 
+    MODIFY COLUMN nome VARCHAR(255),
+    MODIFY COLUMN rua VARCHAR(255),
+    MODIFY COLUMN estado VARCHAR(255),
+    MODIFY COLUMN bairro VARCHAR(255),
+    MODIFY COLUMN biografia VARCHAR(500),
+    MODIFY COLUMN imagem MEDIUMBLOB,
+    MODIFY COLUMN idade INT;`,
     (err, results) => {
         if (err) {
             // Se ocorrer um erro, exibe a mensagem de erro no console
